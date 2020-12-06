@@ -131,7 +131,7 @@ namespace MVCDemo.Controllers
             Maintenance Maintenance = db.Maintenance.Find(id);
             db.Maintenance.Remove(Maintenance);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("CarIndex", new { carId = Maintenance.CarId });
         }
 
         protected override void Dispose(bool disposing)
