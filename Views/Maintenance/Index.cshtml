@@ -1,0 +1,50 @@
+﻿@model IEnumerable<MVCDemo.Models.Maintenance>
+
+@{
+    ViewBag.Title = "Maintenance Schedule";
+}
+
+<h2>@ViewBag.Title</h2>
+<h4>For @ViewBag.CarName</h4>
+<p>
+    @Html.ActionLink("Create New", "Create", new { carId = @ViewBag.CarId })
+</p>
+<table class="table table-responsive table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Months)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Months)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.MaintenanceId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.MaintenanceId }) 
+                </div>
+            }
+            <div>
+                @Html.ActionLink("Details", "Details", new { id = item.MaintenanceId })
+            </div>
+
+        </td>
+    </tr>
+}
+
+</table>
+<div>
+    @Html.ActionLink("Back to Car List", "Index", "Car")
+</div>

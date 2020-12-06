@@ -1,0 +1,26 @@
+﻿@model MVCDemo.Models.Car
+
+@{
+    ViewBag.Title = "Car Details";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="panel panel-default">
+    <div class="panel-heading text-center">
+                <h2>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h2 >
+                <h4>@Html.DisplayNameFor(model => model.Type): @Html.DisplayFor(model => model.Type)</h4>
+    </div>
+    <div class="panel-body">
+        @if (Model.ImageFile != null)
+        {
+            <img class="img-responsive img-thumbnail center-block" src="@string.Format("data:image/png;base64,{0}", Convert.ToBase64String(Model.ImageFile))" width="400" height="400" />
+        }
+    </div>
+</div>
+
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CarId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
